@@ -8,10 +8,13 @@
   <body>
     <form id="mainForm">
       <input id="url" type="text" placeholder="thecoverproject.net cover download link" size="70"/>
+      <select id="system">
+        <option value="snes">Snes</option>
+        <option value="neogeocd">Neogeo CD</option>
+        <option value="genesismegadrive">Genesis/Mega Drive</option>
+      </select>
       <input type="submit"/><br/><b>Rotate: </b>
       <input id="rotate" type="checkbox" checked="checked"/>
-      <input id="xoffset" type="text" placeholder="offset X" />
-      <input id="yoffset" type="text" placeholder="offset Y" />
       <hr/>
       <div id="loading">Loading...</div><img id="mainImage"/>
     </form>

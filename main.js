@@ -4,24 +4,49 @@ $(function(){
   var $mainForm = $("form#mainForm");
 
   function processImage(img){
+
+    var dim = {
+      "snes": { 
+        sw: 3366,
+        sh: 2100,
+        dx: () => { return rotate ? -3366 : -1832 },
+        dy: 0,
+        dw: () => { return rotate ? 2100 : 1534 },
+        dh: () => { return rotate ? 1534 : 2100 }
+       },
+      "neogeocd": {
+        sw: 3225,
+        sh: 2156,
+        dx: () => { return rotate ? -3225 : -1520 },
+        dy: 0,
+        dw: () => { return rotate ? 2156 : 1705 },
+        dh: () => { return rotate ? 1705 : 2156 }
+       },
+       "genesismegadrive": {
+        sw: 3366,
+        sh: 2100,
+        dx: () => { return rotate ? -3366 : -1835 },
+        dy: 0,
+        dw: () => { return rotate ? 2156 : 1520 },
+        dh: () => { return rotate ? 1520 : 2156 }
+       }
+    }
+
+    var system = dim[$("#system").val()];
+
     var rotate = $("#rotate").prop("checked")
     var c = document.createElement('canvas');
     c.id = "mainCanvas";
-    if(rotate) {
-      c.height = 1534;
-      c.width = 2100;
-    } else {
-      c.width = 1534;
-      c.height = 2100;
-    }
+    c.width = system.dw();
+    c.height = system.dh();
     var ctx = c.getContext('2d');
     if(rotate){
       ctx.save();
       ctx.rotate(-90*Math.PI/180);
-      ctx.drawImage(img, -3366, 0, 3366, 2100);
+      ctx.drawImage(img, system.dx(), system.dy, system.sw, system.sh);
       ctx.restore();
     } else {
-      ctx.drawImage(img, -1832, 0, 3366, 2100);
+      ctx.drawImage(img, system.dx(), system.dy, system.sw, system.sh);
     }
     $("#mainImage").attr("src", c.toDataURL('image/png'));
     $mainForm.removeClass("loading").addClass("loaded");
