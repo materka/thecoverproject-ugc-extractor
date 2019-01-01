@@ -4,6 +4,8 @@ body {
 
 #mainForm {
   display: inline-block;
+  width: 1024px;
+  text-align: left;
 }
 #mainForm #loading {
   display: none;
