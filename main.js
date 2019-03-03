@@ -46,7 +46,7 @@ $(function(){
     } else {
       ctx.drawImage(img, system.dx(), system.dy, system.sw, system.sh);
     }
-    $("#mainImage").attr("src", c.toDataURL('image/png'));
+    $("#mainImage").attr("src", c.toDataURL('application/octet-stream'));
     $mainForm.removeClass("loading").addClass("loaded");
   }
 
